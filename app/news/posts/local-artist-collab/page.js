@@ -128,7 +128,7 @@ export default function BlogPost() {
 
           <div className="relative aspect-video rounded-lg overflow-hidden my-12">
             <Image
-              src="https://images.unsplash.com/photo-1525130413817-d45c1d127c6c"
+              src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745"
               alt="Collaboration in progress"
               fill
               className="object-cover"

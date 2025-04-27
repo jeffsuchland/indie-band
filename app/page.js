@@ -1,8 +1,14 @@
+'use client';
+
 import Navigation from './components/Navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import DemoModal from './components/DemoModal';
+import { useState } from 'react';
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <main className="min-h-screen">
       <Navigation />
@@ -56,38 +62,84 @@ export default function Home() {
             <p className="font-lato text-lg mb-6 text-slate">
               A journey through misty forests and moonlit valleys
             </p>
-            <button className="bg-mauve text-linen px-6 py-2 rounded-md hover:bg-opacity-90 transition-all duration-300 font-lato">
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="bg-mauve text-linen px-6 py-2 rounded-md hover:bg-opacity-90 transition-all duration-300 font-lato"
+            >
               Watch Full Video
             </button>
           </div>
         </div>
       </section>
 
-      {/* About Preview Section */}
-      <section className="py-20 px-4 bg-slate/5 relative">
-        <div className="absolute inset-0 opacity-10">
-          <Image
-            src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6"
-            alt="Band background"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="max-w-4xl mx-auto relative">
-          <h2 className="font-amatic font-bold text-4xl mb-6 text-slate text-center">Our Story</h2>
-          <p className="font-lato text-lg mb-6 text-slate leading-relaxed">
-            The Wandering Echoes emerged from the misty corners of the Pacific Northwest, 
-            where dreams and reality intertwine. Our music weaves together threads of 
-            folk tradition with modern dream-pop sensibilities, creating a tapestry of 
-            sound that reflects the landscapes that inspired us.
-          </p>
-          <div className="text-center">
-            <button className="bg-slate text-linen px-6 py-2 rounded-md hover:bg-opacity-90 transition-all duration-300 font-lato">
-              Read More
-            </button>
+      {/* Video Section */}
+      <section className="py-20 px-4 bg-slate/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-video rounded-lg overflow-hidden group cursor-pointer" onClick={() => setIsModalOpen(true)}>
+              <Image
+                src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae"
+                alt="Band performance"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-slate/50 group-hover:bg-slate/40 transition-colors duration-300 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-mauve/90 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-linen" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2 className="font-amatic text-4xl font-bold text-slate mb-4">Latest Music Video</h2>
+              <p className="font-lato text-lg text-slate/80 mb-6">
+                Experience our latest single "Midnight Dreams" in a stunning visual journey through the Pacific Northwest.
+              </p>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-mauve text-linen px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 font-lato"
+              >
+                Watch Full Video
+              </button>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* About Preview Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-amatic text-4xl font-bold text-slate mb-4">Our Story</h2>
+              <p className="font-lato text-lg text-slate/80 mb-6">
+                From humble beginnings in Portland's indie scene to enchanting audiences across the Pacific Northwest, our journey has been one of musical exploration and growth.
+              </p>
+              <Link 
+                href="/about"
+                className="inline-block bg-mauve text-linen px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-300 font-lato"
+              >
+                Read More
+              </Link>
+            </div>
+            <div className="relative aspect-square rounded-lg overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec"
+                alt="Band members"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <DemoModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Video Player"
+      />
 
       {/* Footer */}
       <footer className="bg-slate text-linen py-12">
