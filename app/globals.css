@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 72, 86, 101;
+  --background-rgb: 248, 240, 227;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply text-slate bg-linen min-h-screen;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-amatic font-bold;
+  }
+
+  p {
+    @apply font-lato;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-slate text-linen px-6 py-2 rounded-md hover:bg-opacity-90 transition-all duration-300 font-lato;
+  }
+
+  .btn-secondary {
+    @apply bg-mauve text-linen px-6 py-2 rounded-md hover:bg-opacity-90 transition-all duration-300 font-lato;
+  }
+}
